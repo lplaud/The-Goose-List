@@ -1,0 +1,86 @@
+<html>
+
+<head>
+  <title>The Goose List</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(function () {
+      $("#divId").load("gooselist.html");
+    });
+  </script>
+  <!-- Basic Page Needs
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>The Goose List</title>
+  <meta name="description"
+    content="A basic list for keeping track of media me and my girlfriend see and want to watch.">
+  <meta name="author" content="Lucas Plaud">
+
+  <!-- Mobile Specific Metas
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Favicon
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+
+</head>
+
+<body>
+
+  <div id="login_div" class="main-div">
+    <h1 style="text-align: center;">The Goose List</h1>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+    <button onclick="login()" style="padding-bottom: 12%">LOGIN</button>
+    <img src="images/goose-walk-goose.gif" alt="Goose Walking Gif" class="gooseWaddle">
+  </div>
+
+  <div id="user_div">
+    <div id="divId"></div>
+    <div id="gooselist">
+    </div>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyC9M4mgEkyOjwTi4G_qmTA8ZZyXR3MtHko",
+      authDomain: "goose-900f0.firebaseapp.com",
+      databaseURL: "https://goose-900f0-default-rtdb.firebaseio.com",
+      projectId: "goose-900f0",
+      storageBucket: "goose-900f0.appspot.com",
+      messagingSenderId: "347617989643",
+      appId: "1:347617989643:web:84812b31a0a3408721230e"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="index.js"></script>
+</body>
+
+</html>

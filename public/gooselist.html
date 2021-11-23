@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<head>
+		<!-- Basic Page Needs
+		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<meta charset="utf-8">
+		<title>The Goose List</title>
+		<meta name="description" content="A basic list for keeping track of media me and my girlfriend see and want to watch.">
+		<meta name="author" content="Lucas Plaud">
+</head>
+
+<body>
+	<div>
+	<div class="center">
+        <h1>The Goose List</h4>
+  	</div>			
+		<h3>New Media to Add?</h1>
+			
+		<form>
+			<div class="form-group">
+				<div style="display: table">
+					<div style="display: table-cell">
+						<input type="text" class="form-control" id="fullNameField" placeholder="Name of Media">
+					</div>
+					<div style="display: table-cell">
+						<!-- textarea are like inputs but they're for long text! -->
+						<input type="text" class="form-control" id="notesField" placeholder="Description/Link to Trailer"></textarea>
+					</div>
+					<div style="display: table-cell">
+						<a class="button" onclick="submit()" id="submitButton">Submit</a>
+					</div>
+
+				</div>
+			</div>
+
+		</form>
+		
+		<div>
+			<h3>Things to Check Out!</h1>
+			<div id="previousOrders">
+				<!-- We will use javascript to insert html for the orders list here -->
+				<!-- if you don't want orders to show on the homepage, you can duplicate the page and remove this from here, leave the other one with a werid name so only you can find it -->
+			</div>
+		</div>
+
+	</div>
+
+
+	<script>		
+		var database = loadDB();
+
+		//create a variable to hold our orders list from firebase
+		var firebaseOrdersCollection = database.ref().child('orders');
+		
+		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
+		firebaseOrdersCollection.on('value',function(orders){
+
+			//AUTH GOES HERE
+			
+			//create an empty string that will hold our new HTML
+			var allOrdersHtml = "";
+			
+			var tableHeadHtml = `<table>
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Notes</th>
+														<th>Complete?</th>
+													</tr>
+												</thead>
+												<tbody>`;
+
+			var tableEndHtml = "</tbody></table>"
+			//this is saying foreach order do the following function...
+			orders.forEach(function(firebaseOrderReference){
+				
+				//this gets the actual data (JSON) for the order.
+				var order = firebaseOrderReference.val();
+				console.log(order); //check your console to see it!
+				
+				//create html for the individual order
+				//note: this is hard to make look pretty! Be sure to keep your indents nice :-)
+				//IMPORTANT: we use ` here instead of ' (notice the difference?) That allows us to use enters
+				var individialOrderHtml =	`
+												<tr>
+													<td>`+order.fullName+`</td>
+													<td>`+order.notes+`</td>
+													<td> <a class="button" onclick="removeEntry(`+order.fullName+`)" id="removeButton">Remove</a></td>
+												</tr>
+											`;
+				
+				//add the individual order html to the end of the allOrdersHtml list
+				allOrdersHtml = allOrdersHtml + individialOrderHtml;
+			});
+			
+			//actaull put the html on the page inside the element with the id PreviousOrders
+			allOrdersHtml = tableHeadHtml + allOrdersHtml + tableEndHtml;
+			$('#previousOrders').html(allOrdersHtml);
+
+			
+			//note: an alternative approach would be to create a hidden html element for one order on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
+		});
+	</script>
+	</div>
+</body>
+
+</html>
