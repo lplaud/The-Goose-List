@@ -29,7 +29,7 @@
 						<input type="text" class="form-control" id="notesField" placeholder="Description/Link to Trailer"></textarea>
 					</div>
 					<div style="display: table-cell">
-						<a class="button" onclick="submit()" id="submitButton">Submit</a>
+						<a class="button" onclick="submit(document.getElementById('fullNameField').value)" id="submitButton">Submit</a>
 					</div>
 
 				</div>
@@ -87,7 +87,7 @@
 												<tr>
 													<td>`+order.fullName+`</td>
 													<td>`+order.notes+`</td>
-													<td> <a class="button" onclick="removeEntry(`+order.fullName+`)" id="removeButton">Remove</a></td>
+													<td> <a class="button" onclick="remove('`+order.fullName+`')" id="removeButton">Remove</a></td>
 												</tr>
 											`;
 				

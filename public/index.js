@@ -42,19 +42,22 @@ function logout(){
   firebase.auth().signOut();
 }
 
-function submit() {
+function submit(submittedName) {
   var database = firebase.database();
   var firebaseOrdersCollection = database.ref().child('orders');
-  //Grab order data from the form
-  var order = {
-    fullName: $('#fullNameField').val(), //another way you could write is $('#myForm [name="fullname"]').
-    notes: $('#notesField').val(), //another way you could write is $('#myForm [name="fullname"]').
-  };
-  
-  //'push' (aka add) your order to the existing list
-  firebaseOrdersCollection.push(order); //'orders' is the name of the 'collection' (aka database table)
+
+  firebaseOrdersCollection.child(submittedName).set({
+      fullName: $('#fullNameField').val(),
+      notes: $('#notesField').val(),
+  });
 };
 
 function loadDB(){
   return firebase.database();
+}
+
+function remove(submittedName){
+  var database = firebase.database();
+  var firebaseOrdersCollection = database.ref().child('orders');
+  firebaseOrdersCollection.child(submittedName).set(null);
 }
