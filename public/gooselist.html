@@ -133,7 +133,7 @@
 			completeds.forEach(function(firebaseCompletedReference){
 				
 				//this gets the actual data (JSON) for the media.
-				var media = firebaseCompletedReference.val();
+				var completeds = firebaseCompletedReference.val();
 				console.log(completeds); //check your console to see it!
 				
 				//create html for the individual media
@@ -143,7 +143,7 @@
 												<tr>
 													<td>`+completeds.fullName+`</td>
 													<td>`+completeds.notes+`</td>
-													<td> <a class="button" onclick="remove('`+media.fullName+`')" id="removeButton">Complete?</a></td>
+													<td> <a class="button" onclick="remove('`+completeds.fullName+`')" id="removeButton">Complete?</a></td>
 												</tr>
 											`;
 				
