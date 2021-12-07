@@ -39,12 +39,13 @@ function login(){
 }
 
 function logout(){
+
   firebase.auth().signOut();
 }
 
 function submit(submittedName) {
   var database = firebase.database();
-  var firebaseMediasCollection = database.ref().child('media');
+  var firebaseMediasCollection = database.ref().child('medias');
 
   firebaseMediasCollection.child(submittedName).set({
       fullName: $('#fullNameField').val(),
@@ -56,8 +57,19 @@ function loadDB(){
   return firebase.database();
 }
 
+function completed(submittedName, notes){
+  var database = firebase.database();
+  var firebaseMediasCollection = database.ref().child('medias');
+  firebaseMediasCollection.child(submittedName).set(null);
+  firebaseMediasCollection = database.ref().child('completeds');
+  firebaseMediasCollection.child(submittedName).set({
+    fullName: submittedName,
+    notes: notes,
+  });
+}
+
 function remove(submittedName){
   var database = firebase.database();
-  var firebaseMediasCollection = database.ref().child('media');
+  var firebaseMediasCollection = database.ref().child('completeds');
   firebaseMediasCollection.child(submittedName).set(null);
 }

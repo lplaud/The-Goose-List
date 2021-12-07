@@ -39,6 +39,18 @@
 		
 		<div>
 			<h3>Things to Check Out!</h1>
+			<div id="previousMedias">
+				<!-- We will use javascript to insert html for the media list here -->
+				<!-- if you don't want media to show on the homepage, you can duplicate the page and remove this from here, leave the other one with a werid name so only you can find it -->
+			</div>
+		</div>
+
+		<div>
+			<h3>Completed!</h1>
+			<div id="completedMedias">
+				<!-- We will use javascript to insert html for the media list here -->
+				<!-- if you don't want media to show on the homepage, you can duplicate the page and remove this from here, leave the other one with a werid name so only you can find it -->
+			</div>
 		</div>
 
 	</div>
@@ -48,7 +60,8 @@
 		var database = loadDB();
 
 		//create a variable to hold our media list from firebase
-		var firebaseMediasCollection = database.ref().child('media');
+		var firebaseMediasCollection = database.ref().child('medias');
+		var firebaseCompletedsCollection = database.ref().child('completeds');
 		
 		//create a 'listener' which waits for changes to the values inside the firebaseMediasCollection 
 		firebaseMediasCollection.on('value',function(medias){
@@ -83,7 +96,7 @@
 												<tr>
 													<td>`+media.fullName+`</td>
 													<td>`+media.notes+`</td>
-													<td> <a class="button" onclick="remove('`+media.fullName+`')" id="removeButton">Remove</a></td>
+													<td> <a class="button" onclick="completed('`+media.fullName+`', '`+media.notes+`')" id="comepletedsButton">Complete?</a></td>
 												</tr>
 											`;
 				
@@ -94,6 +107,53 @@
 			//actaull put the html on the page inside the element with the id PreviousMedias
 			allMediasHtml = tableHeadHtml + allMediasHtml + tableEndHtml;
 			$('#previousMedias').html(allMediasHtml);
+
+			
+			//note: an alternative approach would be to create a hidden html element for one media on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
+		});
+		firebaseCompletedsCollection.on('value',function(completeds){
+			
+			//AUTH GOES HERE
+			
+			//create an empty string that will hold our new HTML
+			var completedsMediasHtml = "";
+			
+			var completedTableHeadHtml = `<table>
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Notes</th>
+														<th>Remove?</th>
+													</tr>
+												</thead>
+												<tbody>`;
+
+			var completedTableEndHtml = "</tbody></table>"
+			//this is saying foreach media do the following function...
+			completeds.forEach(function(firebaseCompletedReference){
+				
+				//this gets the actual data (JSON) for the media.
+				var media = firebaseCompletedReference.val();
+				console.log(completeds); //check your console to see it!
+				
+				//create html for the individual media
+				//note: this is hard to make look pretty! Be sure to keep your indents nice :-)
+				//IMPORTANT: we use ` here instead of ' (notice the difference?) That allows us to use enters
+				var completedsIndividialMediaHtml =	`
+												<tr>
+													<td>`+completeds.fullName+`</td>
+													<td>`+completeds.notes+`</td>
+													<td> <a class="button" onclick="remove('`+media.fullName+`')" id="removeButton">Complete?</a></td>
+												</tr>
+											`;
+				
+				//add the individual media html to the end of the allMediasHtml list
+				completedsMediasHtml = completedsMediasHtml + completedsIndividialMediaHtml;
+			});
+			
+			//actaull put the html on the page inside the element with the id PreviousMedias
+			completedsMediasHtml = completedTableHeadHtml + completedsMediasHtml + completedTableEndHtml;
+			$('#completedMedias').html(completedsMediasHtml);
 
 			
 			//note: an alternative approach would be to create a hidden html element for one media on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
