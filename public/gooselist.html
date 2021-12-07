@@ -39,10 +39,6 @@
 		
 		<div>
 			<h3>Things to Check Out!</h1>
-			<div id="previousOrders">
-				<!-- We will use javascript to insert html for the orders list here -->
-				<!-- if you don't want orders to show on the homepage, you can duplicate the page and remove this from here, leave the other one with a werid name so only you can find it -->
-			</div>
 		</div>
 
 	</div>
@@ -51,16 +47,16 @@
 	<script>		
 		var database = loadDB();
 
-		//create a variable to hold our orders list from firebase
-		var firebaseOrdersCollection = database.ref().child('orders');
+		//create a variable to hold our media list from firebase
+		var firebaseMediasCollection = database.ref().child('media');
 		
-		//create a 'listener' which waits for changes to the values inside the firebaseOrdersCollection 
-		firebaseOrdersCollection.on('value',function(orders){
+		//create a 'listener' which waits for changes to the values inside the firebaseMediasCollection 
+		firebaseMediasCollection.on('value',function(medias){
 
 			//AUTH GOES HERE
 			
 			//create an empty string that will hold our new HTML
-			var allOrdersHtml = "";
+			var allMediasHtml = "";
 			
 			var tableHeadHtml = `<table>
 												<thead>
@@ -73,34 +69,34 @@
 												<tbody>`;
 
 			var tableEndHtml = "</tbody></table>"
-			//this is saying foreach order do the following function...
-			orders.forEach(function(firebaseOrderReference){
+			//this is saying foreach media do the following function...
+			medias.forEach(function(firebaseMediaReference){
 				
-				//this gets the actual data (JSON) for the order.
-				var order = firebaseOrderReference.val();
-				console.log(order); //check your console to see it!
+				//this gets the actual data (JSON) for the media.
+				var media = firebaseMediaReference.val();
+				console.log(media); //check your console to see it!
 				
-				//create html for the individual order
+				//create html for the individual media
 				//note: this is hard to make look pretty! Be sure to keep your indents nice :-)
 				//IMPORTANT: we use ` here instead of ' (notice the difference?) That allows us to use enters
-				var individialOrderHtml =	`
+				var individialMediaHtml =	`
 												<tr>
-													<td>`+order.fullName+`</td>
-													<td>`+order.notes+`</td>
-													<td> <a class="button" onclick="remove('`+order.fullName+`')" id="removeButton">Remove</a></td>
+													<td>`+media.fullName+`</td>
+													<td>`+media.notes+`</td>
+													<td> <a class="button" onclick="remove('`+media.fullName+`')" id="removeButton">Remove</a></td>
 												</tr>
 											`;
 				
-				//add the individual order html to the end of the allOrdersHtml list
-				allOrdersHtml = allOrdersHtml + individialOrderHtml;
+				//add the individual media html to the end of the allMediasHtml list
+				allMediasHtml = allMediasHtml + individialMediaHtml;
 			});
 			
-			//actaull put the html on the page inside the element with the id PreviousOrders
-			allOrdersHtml = tableHeadHtml + allOrdersHtml + tableEndHtml;
-			$('#previousOrders').html(allOrdersHtml);
+			//actaull put the html on the page inside the element with the id PreviousMedias
+			allMediasHtml = tableHeadHtml + allMediasHtml + tableEndHtml;
+			$('#previousMedias').html(allMediasHtml);
 
 			
-			//note: an alternative approach would be to create a hidden html element for one order on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
+			//note: an alternative approach would be to create a hidden html element for one media on the page, duplicate it in the forEach loop, unhide it, and replace the information, and add it back. 
 		});
 	</script>
 	</div>

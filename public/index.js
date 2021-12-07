@@ -44,9 +44,9 @@ function logout(){
 
 function submit(submittedName) {
   var database = firebase.database();
-  var firebaseOrdersCollection = database.ref().child('orders');
+  var firebaseMediasCollection = database.ref().child('media');
 
-  firebaseOrdersCollection.child(submittedName).set({
+  firebaseMediasCollection.child(submittedName).set({
       fullName: $('#fullNameField').val(),
       notes: $('#notesField').val(),
   });
@@ -58,6 +58,6 @@ function loadDB(){
 
 function remove(submittedName){
   var database = firebase.database();
-  var firebaseOrdersCollection = database.ref().child('orders');
-  firebaseOrdersCollection.child(submittedName).set(null);
+  var firebaseMediasCollection = database.ref().child('media');
+  firebaseMediasCollection.child(submittedName).set(null);
 }
