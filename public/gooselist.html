@@ -18,7 +18,7 @@
   	</div>			
 		<h3>New Media to Add?</h1>
 			
-		<form>
+		<form id="subform">
 			<div class="form-group">
 				<div style="display: table">
 					<div style="display: table-cell">
@@ -26,8 +26,33 @@
 					</div>
 					<div style="display: table-cell">
 						<!-- textarea are like inputs but they're for long text! -->
-						<input type="text" class="form-control" id="notesField" placeholder="Description/Link to Trailer"></textarea>
+						<input type="text" class="form-control" id="linkField" placeholder="Link to Trailer"></textarea>
 					</div>
+					<div style="display: table-cell">
+						<select class="u-full-width" id="typeField">
+						  <option value="" disabled selected>Type of Media?</option>
+						  <option value="Movie">Movie</option>
+						  <option value="TV Show">TV Show</option>
+						  <option value="Video">Video</option>
+						  <option value="Other">Other...</option>
+						</select>
+					</div>
+					<div style="display: table-cell">
+						<select class="u-full-width" id="genreField">
+						  <option value="" disabled selected>Type of Genre?</option>
+						  <option value="Action">Action</option>
+						  <option value="Adventure">Adventure</option>
+						  <option value="Comedy">Comedy</option>
+						  <option value="Crime/Mystery">Crime/Mystery</option>
+						  <option value="Fantasy">Fantasy</option>
+						  <option value="Horror">Horror</option>
+						  <option value="Romance">Romance</option>
+						  <option value="Science Fiction">Science Fiction</option>
+						  <option value="Thriller">Thriller</option>
+						  <option value="Other">Other...</option>
+
+						</select>
+					</div>			  
 					<div style="display: table-cell">
 						<a class="button" onclick="submit(document.getElementById('fullNameField').value)" id="submitButton">Submit</a>
 					</div>
@@ -71,11 +96,12 @@
 			//create an empty string that will hold our new HTML
 			var allMediasHtml = "";
 			
-			var tableHeadHtml = `<table>
+			var tableHeadHtml = `<table id="myTable">
 												<thead>
 													<tr>
-														<th>Name</th>
-														<th>Notes</th>
+														<th style="cursor:pointer" onclick="sortTable('myTable', 0)">Name</th>
+														<th style="cursor:pointer" onclick="sortTable('myTable', 1)">Genre</th>
+														<th style="cursor:pointer" onclick="sortTable('myTable', 2)">Type</th>
 														<th>Complete?</th>
 													</tr>
 												</thead>
@@ -94,9 +120,10 @@
 				//IMPORTANT: we use ` here instead of ' (notice the difference?) That allows us to use enters
 				var individialMediaHtml =	`
 												<tr>
-													<td>`+media.fullName+`</td>
-													<td>`+media.notes+`</td>
-													<td> <a class="button" onclick="completed('`+media.fullName+`', '`+media.notes+`')" id="comepletedsButton">Complete?</a></td>
+													<td> <a href="`+media.link+`">`+media.fullName+`</a> </td>
+													<td>`+media.genre+`</td>
+													<td>`+media.type+`</td>
+													<td> <a class="button" onclick="completed('`+media.fullName+`', '`+media.link+`', '`+media.genre+`', '`+media.type+`')" id="comepletedsButton">Complete?</a></td>
 												</tr>
 											`;
 				
@@ -118,11 +145,12 @@
 			//create an empty string that will hold our new HTML
 			var completedsMediasHtml = "";
 			
-			var completedTableHeadHtml = `<table>
+			var completedTableHeadHtml = `<table id="myTable2">
 												<thead>
 													<tr>
-														<th>Name</th>
-														<th>Notes</th>
+														<th style="cursor:pointer" onclick="sortTable('myTable2', 0)">Name</th>
+														<th style="cursor:pointer" onclick="sortTable('myTable2', 1)">Genre</th>
+														<th style="cursor:pointer" onclick="sortTable('myTable2', 2)">Type</th>
 														<th>Remove?</th>
 													</tr>
 												</thead>
@@ -141,9 +169,10 @@
 				//IMPORTANT: we use ` here instead of ' (notice the difference?) That allows us to use enters
 				var completedsIndividialMediaHtml =	`
 												<tr>
-													<td>`+completeds.fullName+`</td>
-													<td>`+completeds.notes+`</td>
-													<td> <a class="button" onclick="remove('`+completeds.fullName+`')" id="removeButton">Complete?</a></td>
+													<td> <a href="`+completeds.link+`">`+completeds.fullName+`</a> </td>
+													<td>`+completeds.genre+`</td>
+													<td>`+completeds.type+`</td>
+													<td> <a class="button" onclick="remove('`+completeds.fullName+`')" id="removeButton">Remove?</a></td>
 												</tr>
 											`;
 				
