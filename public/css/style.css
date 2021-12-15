@@ -1,10 +1,29 @@
 body {
-  background-color: lightgoldenrodyellow;
+  background-image: url(../images/field-of-daisies.jpg);
+  background-size: cover;
   padding: 0px;
   margin: 0px;
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/* width */
+body::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  background-color: #ead8c2;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #24879c;
+  border-radius: 10px;
+  border: 4px solid #ead8c2;  /* creates padding around scroll thumb */
+
 }
 
 input, button {
@@ -13,9 +32,9 @@ input, button {
 }
 
 .main-div, .loggedin-div {
-  width: 20%;
+  width: 80%;
   margin: 0px auto;
-  margin-top: 150px;
+  margin-top: 5%;
   padding: 20px;
   display: none;
 }
@@ -62,12 +81,11 @@ input, button {
   0%    {left:-10%; bottom:0%;}
   100%   {left:105%; bottom:0%;}
 }
+
+@media (max-width: 700px){
 .gooseWaddle{
-  position: absolute;
-  animation-name: waddleGif;
-  animation-duration: 20s;
-  animation-iteration-count: infinite;
-  margin-bottom:0px;
+  display: none;
+  }
 }
 
 table {
@@ -79,4 +97,230 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+
+.mainSite{
+  background-color: lightgoldenrodyellow;
+  height: auto;
+  min-height: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+
+}
+
+.tablePort{
+  margin-left: 0%;
+  margin-right: 0%;
+  max-width: 100%;
+}
+
+.actTables{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#myTable{
+  border-collapse: collapse;
+  margin-bottom: 0px;
+}
+
+#myTable2{
+  border-collapse: collapse;
+  margin-bottom: 0px;
+}
+
+#myTable td{
+  padding: 0; 
+  margin: 0;
+}
+
+/* width */
+.actTables::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+.actTables::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.actTables::-webkit-scrollbar-thumb {
+  background: #24879c;
+  border-radius: 10px;
+}
+
+.loginBody{
+  background-image: url(../images/field-of-daisies.jpg);
+  background-size: cover;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  height: auto;
+}
+
+.logbox{
+  background-color: lightgoldenrodyellow;
+  padding:10%;
+  border-radius: 25px;
+}
+
+.logButton{
+  line-height: 50%;
+}
+
+@media (min-width: 750px) {
+  body {
+    background-image: url(../images/field-of-daisies.jpg);
+    background-size: cover;
+    padding: 0px;
+    margin: 0px;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }
+
+  .actTables{
+    overflow-x: auto;
+  }
+
+  #myTable{
+    border-collapse: collapse;
+    margin-bottom: 0px;
+  }
+  
+  #myTable2{
+    border-collapse: collapse;
+    margin-bottom: 0px;
+  }
+
+  input,
+  button {
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+  }
+
+  .main-div,
+  .loggedin-div {
+    width: 30%;
+    margin: 0px auto;
+    margin-top: 5%;
+    padding: 20px;
+    display: none;
+  }
+
+  .main-div input {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    padding: 15px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+  }
+
+  .main-div input:focus {
+    border: 1px solid #777;
+  }
+
+  .main-div button,
+  .loggedin-div button {
+    background: #5d8ffc;
+    color: #fff;
+    border: 1px solid #5d8ffc;
+    border-radius: 5px;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+  }
+
+  .main-div button:hover,
+  .loggedin-div button:hover {
+    background: #fff;
+    color: #5d8ffc;
+    border: 1px solid #5d8ffc;
+    cursor: pointer;
+  }
+
+  @keyframes waddleGif {
+    0% {
+      left: -10%;
+      bottom: 0%;
+    }
+    100% {
+      left: 105%;
+      bottom: 0%;
+    }
+  }
+  .gooseWaddle {
+    position: absolute;
+    animation-name: waddleGif;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    bottom: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .mainSite {
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: lightgoldenrodyellow;
+    height: auto;
+    min-height: 100%;
+  }
+
+  .tablePort {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .loginBody {
+    background-image: url(../images/field-of-daisies.jpg);
+    background-size: cover;
+    padding: 0px;
+    margin: 0px;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    height: auto;
+  }
+
+  .logbox {
+    background-color: lightgoldenrodyellow;
+    padding: 10%;
+    border-radius: 25px;
+  }
+
+  .logButton {
+    line-height: 50%;
+  }
+
+  .tab{
+    display: table;
+  }
+
+  .tabCell{
+    display: table-cell;
+  }
 }

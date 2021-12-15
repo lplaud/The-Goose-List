@@ -27,6 +27,7 @@ function login(){
   var userPass = document.getElementById("password_field").value;
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -36,6 +37,9 @@ function login(){
     // ...
   });
 
+  setTimeout(function(){
+    window.location.reload();
+  }, 1000);
 }
 
 function logout(){
