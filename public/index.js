@@ -48,6 +48,21 @@ function logout(){
 }
 
 function submit(submittedName) {
+  if($('#fullNameField').val() == ""){
+    alert("Enter a name you silly goose!")
+    return 0;
+  }
+
+  if($('#linkField').val() == ""){
+    alert("You forgot your link! If you don't have one thats okay, just enter anything there :) There is a safe 404 page!")
+    return 0;
+  }
+
+  if($('#genreField').val() == null || $('#typeField').val() == null){
+    alert("Please enter a type of media AND genre of the media you're adding baby :)")
+    return 0;
+  }
+
   var database = firebase.database();
   var firebaseMediasCollection = database.ref().child('medias');
 
